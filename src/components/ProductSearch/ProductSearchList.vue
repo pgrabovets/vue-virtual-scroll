@@ -1,0 +1,47 @@
+<script setup lang="ts">
+import SearchProductCard from './SearchProductCard.vue'
+
+import type { IProduct } from '@/types/product'
+
+defineProps<{ products: IProduct[] }>()
+</script>
+
+<template>
+  <div class="search-list">
+    <div v-if="products.length > 0" class="with-scroll">
+      <SearchProductCard v-for="product in products" :key="product.id" :product="product" />
+    </div>
+    <div v-else class="with-scroll not-found">
+      <p>Not Found</p>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.search-list {
+  padding: 0 14px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.with-scroll {
+  padding: 14px 6px 14px;
+  overflow-y: auto;
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #777;
+}
+</style>
