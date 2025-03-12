@@ -4,7 +4,13 @@ const model = defineModel()
 
 <template>
   <div class="search-bar">
-    <input v-model="model" placeholder="search product" class="search-bar-input" type="text" />
+    <input
+      name="search-control"
+      v-model="model"
+      placeholder="search product"
+      class="search-bar-input"
+      type="text"
+    />
   </div>
 </template>
 

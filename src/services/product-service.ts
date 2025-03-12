@@ -46,8 +46,8 @@ type ProductsResponse = {
 }
 
 export const getProducts = async () => {
-  const response = await fetch('https://dummyjson.com/products?limit=12')
+  const response = await fetch('https://dummyjson.com/products?limit=100')
   const data: ProductsResponse = await response.json()
-  // const result = new Array(10000).fill(null).map((index) => data.products[index % 100])
-  return data.products
+  const result = new Array(10000).fill(null).map((_, index) => data.products[index % 100])
+  return result.map((item, index) => ({ ...item, id: index }))
 }

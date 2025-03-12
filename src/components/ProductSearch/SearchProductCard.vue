@@ -13,7 +13,7 @@ const { title, description, discountPercentage, brand, price, rating, category, 
 <template>
   <div class="product-card">
     <div class="product-img-block">
-      <img :src="thumbnail" alt="product image" width="180" height="180" />
+      <img :src="thumbnail" loading="lazy" alt="product image" width="180" height="180" />
     </div>
     <div class="product-info-block">
       <h2 class="title">{{ title }}</h2>

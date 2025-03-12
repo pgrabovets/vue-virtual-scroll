@@ -9,10 +9,10 @@ defineProps<{ products: IProduct[] }>()
 
 <template>
   <div class="search-list">
-    <VirtualScroll v-if="products.length > 0" :height="520" :items="products" v-slot="{ item }">
+    <VirtualScroll v-if="products.length" :height="520" :items="products" v-slot="{ item }">
       <SearchProductCard :product="item as IProduct" />
     </VirtualScroll>
-    <div v-else class="with-scroll not-found">
+    <div v-else class="not-found">
       <p>Not Found</p>
     </div>
   </div>
@@ -25,19 +25,11 @@ defineProps<{ products: IProduct[] }>()
   background-color: #fff;
 }
 
-.with-scroll {
-  padding: 14px 6px 14px;
-  overflow-y: auto;
-  height: 520px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
 .not-found {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 520px;
 }
 
 .not-found p {

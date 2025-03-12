@@ -47,7 +47,7 @@ onMounted(async () => {
     <ProductSearchBar v-model="search" />
     <ProductSearchList :products="filtered" />
   </div>
-  <div v-else>loading...</div>
+  <div class="loading" v-else>loading...</div>
 </template>
 
 <style scoped>
@@ -57,5 +57,10 @@ onMounted(async () => {
   gap: 16px;
   max-width: 620px;
   width: 100%;
+}
+
+.loading {
+  font-size: 16px;
+  font-weight: 400;
 }
 </style>
