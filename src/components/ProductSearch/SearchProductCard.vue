@@ -13,7 +13,7 @@ const { title, description, discountPercentage, brand, price, rating, category, 
 <template>
   <div class="product-card">
     <div class="product-img-block">
-      <img :src="thumbnail" loading="lazy" alt="product image" width="200" height="200" />
+      <img :src="thumbnail" alt="product image" width="180" height="180" />
     </div>
     <div class="product-info-block">
       <h2 class="title">{{ title }}</h2>
@@ -35,10 +35,12 @@ const { title, description, discountPercentage, brand, price, rating, category, 
 
 <style scoped>
 .product-card {
+  height: 200px;
   border: 1px solid #ccc;
   border-radius: 10px;
   display: flex;
   gap: 12px;
+  padding: 8px;
 }
 
 .product-img-block {
