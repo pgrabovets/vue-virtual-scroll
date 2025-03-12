@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTemplateRef, onMounted, ref } from 'vue'
+import { useTemplateRef, onMounted, ref, watch } from 'vue'
 
 const props = defineProps<{
   height: number
@@ -21,6 +21,10 @@ const handleScrollEvent = () => {
     return
   }
 
+  const firstElementChild = scrollContentRef.value?.firstElementChild as HTMLElement
+  rowHeight.value = firstElementChild.offsetHeight
+  fullScrollHeight.value = props.items.length * rowHeight.value
+
   const scrollTop = scrollRef.value.scrollTop
   startNodePos.value = Math.max(0, Math.floor(scrollTop / rowHeight.value) - 1)
   visibleNodesCount.value = Math.ceil(props.height / rowHeight.value) + 2
@@ -33,9 +37,10 @@ const handleScrollEvent = () => {
 }
 
 onMounted(() => {
-  const firstElementChild = scrollContentRef.value?.firstElementChild as HTMLElement
-  rowHeight.value = firstElementChild.offsetHeight
-  fullScrollHeight.value = props.items.length * rowHeight.value
+  handleScrollEvent()
+})
+
+watch(props, () => {
   handleScrollEvent()
 })
 </script>

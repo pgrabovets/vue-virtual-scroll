@@ -9,12 +9,7 @@ defineProps<{ products: IProduct[] }>()
 
 <template>
   <div class="search-list">
-    <VirtualScroll
-      v-if="products.length > 0"
-      :height="520"
-      :items="products as never[]"
-      v-slot="{ item }"
-    >
+    <VirtualScroll v-if="products.length > 0" :height="520" :items="products" v-slot="{ item }">
       <SearchProductCard :product="item as IProduct" />
     </VirtualScroll>
     <div v-else class="with-scroll not-found">

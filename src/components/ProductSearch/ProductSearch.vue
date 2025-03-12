@@ -11,10 +11,15 @@ const products = ref<IProduct[]>([])
 
 const filtered = computed(() => {
   const searchTerm = search.value.trim().toLowerCase()
-  if (!searchTerm) return products.value
-  return products.value.filter((item) => {
+  if (!searchTerm) {
+    return products.value
+  }
+
+  const result = products.value.filter((item) => {
     return item.title.toLowerCase().includes(searchTerm)
   })
+
+  return result
 })
 
 onMounted(async () => {
@@ -39,7 +44,7 @@ onMounted(async () => {
 
 <template>
   <div v-if="products.length > 0" class="product-search">
-    <ProductSearchBar v-model.trim="search" />
+    <ProductSearchBar v-model="search" />
     <ProductSearchList :products="filtered" />
   </div>
   <div v-else>loading...</div>
