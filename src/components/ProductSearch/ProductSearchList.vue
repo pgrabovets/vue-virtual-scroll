@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SearchProductCard from './SearchProductCard.vue'
+import VirtualScroll from '../VirtualScroll/VirtualScroll.vue'
 
 import type { IProduct } from '@/types/product'
 
@@ -8,9 +9,14 @@ defineProps<{ products: IProduct[] }>()
 
 <template>
   <div class="search-list">
-    <div v-if="products.length > 0" class="with-scroll">
-      <SearchProductCard v-for="product in products" :key="product.id" :product="product" />
-    </div>
+    <VirtualScroll
+      v-if="products.length > 0"
+      :height="520"
+      :items="products as never[]"
+      v-slot="{ item }"
+    >
+      <SearchProductCard :product="item as IProduct" />
+    </VirtualScroll>
     <div v-else class="with-scroll not-found">
       <p>Not Found</p>
     </div>
