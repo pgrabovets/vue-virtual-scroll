@@ -1,12 +1,30 @@
-# Frozeneon Frontend Test Task
+# Vue Virtual Scroll (Vue 3 + Typescript)
 
-## Recommended IDE Setup
+## Example
+```vue
+<script setup lang="ts">
+  import SearchProductCard from './SearchProductCard.vue'
+  import VirtualScroll from '../VirtualScroll/VirtualScroll.vue'
+  import type { IProduct } from '@/types/product'
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+  defineProps<{ products: IProduct[] }>()
+</script>
 
-## Type Support for `.vue` Imports in TS
+<template>
+  <VirtualScroll :height="520" :items="products" v-slot="{ item }">
+    <SearchProductCard :product="item as IProduct" />
+  </VirtualScroll>
+</template>
+```
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## VirtualScroll Props
+```
+const props = defineProps<{
+  height: number
+  items: { id: number }[]
+}>()
+
+```
 
 ## Project Setup
 
